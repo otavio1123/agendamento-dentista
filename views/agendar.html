@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Agendamento Odontológico</title>
+<link rel="stylesheet" href="/css/agendar.css">
+
+</head>
+<body>
+  <main class="container">
+    <h1>Agendamento Odontológico</h1>
+
+    <section class="card">
+      <label>Serviço</label>
+      <select id="serviceSelect">
+        <option value="">Carregando serviços...</option>
+      </select>
+
+      <label>Data</label>
+      <input id="dateInput" type="date" />
+
+      <button id="loadSlotsBtn">Ver horários</button>
+
+      <div id="slotsArea" class="slots"></div>
+    </section>
+
+    <section class="card">
+      <h2>Dados do paciente</h2>
+
+      <div class="grid">
+        <div>
+          <label>Nome</label>
+          <input id="patientName" type="text" placeholder="Seu nome" />
+        </div>
+
+        <div>
+          <label>Telefone</label>
+          <input id="patientPhone" type="tel" placeholder="(11) 99999-9999" />
+        </div>
+      </div>
+
+      <label>Observações (opcional)</label>
+      <textarea id="notes" rows="3" placeholder="Ex: sensibilidade, urgência, etc."></textarea>
+
+      <div class="row">
+        <div class="chosen">
+          <strong>Horário escolhido:</strong>
+          <span id="chosenSlotText">Nenhum</span>
+        </div>
+        <button id="confirmBtn" disabled>Confirmar agendamento</button>
+      </div>
+
+      <p id="msg" class="msg"></p>
+    </section>
+  </main>
+
+  <script src="/css/js/agendar.js"></script>
+</body>
+</html>

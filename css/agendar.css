@@ -1,0 +1,103 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: #0b1020;
+  color: #e8ecff;
+}
+.container {
+  max-width: 900px;
+  margin: 28px auto;
+  padding: 0 16px;
+}
+h1 { margin: 0 0 16px; font-size: 28px; }
+.card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+label { display:block; margin: 12px 0 6px; opacity: .9; }
+input, select, textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(0,0,0,0.25);
+  color: #e8ecff;
+  outline: none;
+}
+button {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 0;
+  background: #ff7a18;
+  color: #111;
+  font-weight: 700;
+  cursor: pointer;
+}
+button:disabled { opacity: .5; cursor: not-allowed; }
+.slots {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.slot {
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.06);   /* fundo escuro elegante */
+  color: #e6ecff;                       /* ✅ texto claro */
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.slot:hover {
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-1px);
+}
+
+.slot.active {
+  background: rgba(255,122,24,0.18);    /* destaque laranja */
+  border-color: #ff7a18;
+  color: #ffffff;                      /* texto branco */
+  box-shadow: 0 0 0 3px rgba(255,122,24,0.25);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 700px) {
+  .grid { grid-template-columns: 1fr; }
+}
+.row {
+  margin-top: 12px;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.chosen { opacity: .95; }
+.msg { margin-top: 10px; min-height: 20px; }
+.msg.ok { color: #7CFFB2; }
+.msg.err { color: #FF8A8A; }
+
+
+/* Corrige ícone do calendário no tema escuro */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}

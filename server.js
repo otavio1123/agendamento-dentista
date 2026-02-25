@@ -9,7 +9,21 @@ const jwt = require("jsonwebtoken");
 const app = express();
 app.use(cors());
 app.use(express.json());
-
+app.get("/health", async (req, res) => {
+  try {
+    const result = await db.query("SELECT NOW() as now");
+    res.json({
+      status: "ok",
+      database: "conectado",
+      time: result.rows[0].now
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: "erro",
+      message: err.message
+    });
+  }
+});
 // ===== CRIAR ADMIN AUTOMATICAMENTE =====
 async function ensureAdminUser() {
   const email = process.env.ADMIN_EMAIL;

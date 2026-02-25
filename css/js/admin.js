@@ -1,3 +1,4 @@
+
 const BASE_URL = ""; // "" = mesmo domínio (Render). Se separar front/back, coloque a URL aqui.
 const TOKEN_KEY = "admin_token_v1";
 
@@ -25,7 +26,9 @@ function clearToken() {
 }
 
 // ===================== LOGIN =====================
+
 async function adminLogin() {
+  console.log("Clique detectado: adminLogin disparou");
   const emailEl = $("email");
   const passEl = $("password");
 
@@ -42,11 +45,17 @@ async function adminLogin() {
     });
 
     const data = await r.json().catch(() => ({}));
-    if (!r.ok) throw new Error(data.error || `Falha no login (${r.status})`);
+    if (!r.ok) throw new Error(data.error || data.message || `Falha no login (${r.status})`);
 
-    saveToken(data.token);
+    // ✅ pega o token mesmo se o backend usar outro nome
+    const token = data.token || data.accessToken || data.jwt;
+    if (!token) throw new Error("Login OK, mas nenhum token foi retornado pelo servidor.");
+
+    saveToken(token);
     setMsg("Login ok. Redirecionando...", "ok");
-    window.location.href = "/admin";
+
+    // ✅ use a página que realmente existe
+    window.location.href = "/admin.html"; // <- ajuste para o nome real do seu arquivo
   } catch (e) {
     setMsg(e.message, "err");
   }
@@ -552,3 +561,15 @@ if (newPatientPhone) {
 // ===================== START =====================
 initLoginPage();
 initAdminPage();
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("loginBtn");
+  if (btn) btn.addEventListener("click", adminLogin);
+
+  // opcional: Enter no campo senha
+  const pass = document.getElementById("password");
+  if (pass) {
+    pass.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") adminLogin();
+    });
+  }
+});

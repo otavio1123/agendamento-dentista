@@ -3,25 +3,106 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login Admin</title>
+  <title>Painel Admin</title>
   <link rel="stylesheet" href="/css/agendar.css">
 </head>
 <body>
-  <main class="container" style="max-width: 420px;">
-    <h1 style="text-align:center;">Login Admin</h1>
-
-    <section class="card">
-      <label>Email</label>
-      <input id="email" type="email" placeholder="admin@email.com" />
-
-      <label>Senha</label>
-      <input id="password" type="password" placeholder="••••••••" />
-
-      <button id="loginBtn" type="button" style="margin-top:12px; width:100%;">
-        Entrar
+  <main class="container" style="max-width: 1100px;">
+    <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:16px;">
+      <h1 style="margin:0;">Painel Admin</h1>
+      <button id="logoutBtn" type="button" style="background:#111827;color:#fff;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;">
+        Sair
       </button>
+    </div>
+
+    <section class="card" style="margin-bottom: 14px;">
+      <h2 style="margin-top:0;">Filtros</h2>
+
+      <div style="display:grid; grid-template-columns: 220px 220px 1fr auto auto; gap:10px; align-items:end;">
+        <div>
+          <label for="date">Data</label>
+          <input id="date" type="date" />
+        </div>
+
+        <div>
+          <label for="status">Status</label>
+          <select id="status">
+            <option value="">Todos</option>
+            <option value="CONFIRMED">Confirmado</option>
+            <option value="CANCELED">Cancelado</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="phone">Telefone</label>
+          <input id="phone" type="text" placeholder="(11) 99999-9999" />
+        </div>
+
+        <button id="searchBtn" type="button" style="background:#f97316;color:#fff;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;">
+          Buscar
+        </button>
+
+        <button id="clearBtn" type="button" style="background:#374151;color:#fff;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;">
+          Limpar
+        </button>
+      </div>
 
       <p id="msg" class="msg" style="margin-top:10px;"></p>
+    </section>
+
+    <section class="card" style="margin-bottom:14px;">
+      <h2 style="margin-top:0;">Agendamentos</h2>
+      <div id="tableWrap"></div>
+    </section>
+
+    <section class="card">
+      <h2 style="margin-top:0;">Criar agendamento (Admin)</h2>
+
+      <div style="display:grid; grid-template-columns: 1fr 220px auto; gap:10px; align-items:end;">
+        <div>
+          <label>Serviço</label>
+          <select id="newServiceSelect"></select>
+        </div>
+
+        <div>
+          <label>Data</label>
+          <input id="newDateInput" type="date" />
+        </div>
+
+        <button id="newLoadSlotsBtn" type="button" style="background:#f97316;color:#fff;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;">
+          Ver horários
+        </button>
+      </div>
+
+      <div style="margin-top:12px;">
+        <label>Horários disponíveis</label>
+        <div id="newSlotsArea" style="display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;"></div>
+        <p style="margin-top:8px;">Selecionado: <strong id="newChosenSlotText">Nenhum</strong></p>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-top:12px;">
+        <div>
+          <label>Nome do paciente</label>
+          <input id="newPatientName" type="text" placeholder="Nome completo" />
+        </div>
+        <div>
+          <label>Telefone</label>
+          <input id="newPatientPhone" type="text" placeholder="(11) 99999-9999" />
+        </div>
+      </div>
+
+      <div style="margin-top:10px;">
+        <label>Observações</label>
+        <input id="newNotes" type="text" placeholder="Opcional" />
+      </div>
+
+      <div style="display:flex; gap:10px; align-items:center; margin-top:12px;">
+        <button id="newCreateBtn" type="button" disabled
+          style="background:#22c55e;color:#fff;border:none;padding:10px 14px;border-radius:10px;cursor:pointer; opacity:.9;">
+          Criar agendamento
+        </button>
+        <p id="newMsg" class="msg" style="margin:0;"></p>
+      </div>
     </section>
   </main>
 

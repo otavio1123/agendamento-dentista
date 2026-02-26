@@ -55,7 +55,8 @@ async function adminLogin() {
     setMsg("Login ok. Redirecionando...", "ok");
 
     // ✅ use a página que realmente existe
-    window.location.href = "/admin.html"; // <- ajuste para o nome real do seu arquivo
+   // depois
+window.location.href = "/admin"; // <- ajuste para o nome real do seu arquivo
   } catch (e) {
     setMsg(e.message, "err");
   }
